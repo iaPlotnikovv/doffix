@@ -18,5 +18,5 @@ func power_four(n int) bool {
 }
 
 func main() {
-	fmt.Println(power_four())
+	fmt.Println(power_four(0))
 }
