@@ -1,0 +1,51 @@
+package main
+
+import (
+	"fmt"
+)
+
+func isValid(s string) bool {
+
+	skobki := []string{}
+
+	if len(s) > 0 {
+
+		for i := 0; i < len(s); i++ {
+
+			if s[i:i+1] == "(" || s[i:i+1] == "{" || s[i:i+1] == "[" {
+
+				skobki = append(skobki, s[i:i+1])
+				fmt.Println(skobki)
+
+				continue
+
+			}
+			if len(skobki) > 0 {
+
+				if s[i:i+1] == ")" && skobki[len(skobki)-1] == "(" ||
+					s[i:i+1] == "}" && skobki[len(skobki)-1] == "{" ||
+					s[i:i+1] == "]" && skobki[len(skobki)-1] == "[" {
+
+					skobki = skobki[0 : len(skobki)-1]
+				} else {
+					return false
+				}
+
+			} else {
+				return false
+			}
+		}
+
+	} else {
+		return false
+	}
+
+	return len(skobki) == 0
+
+}
+
+func main() {
+
+	fmt.Println(isValid(""))
+
+}
